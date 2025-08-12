@@ -130,14 +130,18 @@ tmpfs /var/tmp tmpfs defaults 0 0" | sudo tee -a /etc/fstab
 
 function browsers0 {
   if ! [ -f /etc/.browserok ]; then
-    # Google Brave
+    # Brave
     echo "Instalando Brave Browser..."
     sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
     echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list
     sudo apt update
     sudo apt install brave-browser -y
     echo "Brave Browser instalado com sucesso!"
-
+    
+    # Google Chrome
+    # wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    # sudo dpkg -i ./google-chrome*.deb; sudo rm google-chrome*.deb
+    
     # # Microsoft Edge
     # wget https://packages.microsoft.com/repos/edge/pool/main/m/microsoft-edge-stable/microsoft-edge-stable_135.0.3179.54-1_amd64.deb
     # sudo dpkg -i microsoft-edge-stable_135.0.3179.54-1_amd64.deb; sudo rm microsoft-edge*.deb
