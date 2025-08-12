@@ -294,7 +294,8 @@ function warning0 {
 
   while true; do
     read -rp $'\e[1;32mDigite "ENTENDI" para continuar: \e[0m' resposta
-    if [[ "${resposta^^}" == "ENTENDI" ]]; then
+    # converte entrada para maiúsculas para comparação case insensitive
+    if [ "$(echo "$resposta" | tr '[:lower:]' '[:upper:]')" = "ENTENDI" ]; then
       break
     else
       echo -e "\e[1;31mVocê precisa digitar exatamente \e[1;33mENTENDI\e[1;31m para prosseguir.\e[0m"
@@ -302,6 +303,7 @@ function warning0 {
   done
   clear
 }
+
 
 
 function warning1 {
