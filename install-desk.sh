@@ -283,25 +283,17 @@ function message2 {
 
 function warning0 {
   clear
-  echo -e "\e[1;31m###############################################################\e[0m"
-  echo -e "\e[1;31mPARABÉNS, É EXATAMENTE ASSIM QUE EU GANHO ACESSO FÁCIL AO SEU COMPUTADOR!\e[0m"
-  echo -e "\e[1;33mNUNCA COPIE E COLE COISAS NO SEU TERMINAL SEM CHECAR, SEU PATETA.\e[0m"
-  echo -e "\e[1;36mATENÇÃO:\e[0m Use scripts apenas de fontes confiáveis."
-  echo -e "\e[1;36mATENÇÃO:\e[0m Entenda o que cada comando faz antes de executar."
-  echo -e "\e[1;36mATENÇÃO:\e[0m Sempre faça backup dos seus dados importantes."
-  echo -e "\e[1;31m###############################################################\e[0m"
-  echo ""
-
   while true; do
-    read -rp $'\e[1;32mDigite "ENTENDI" para continuar: \e[0m' resposta
-    # converte entrada para maiúsculas para comparação case insensitive
-    if [ "$(echo "$resposta" | tr '[:lower:]' '[:upper:]')" = "ENTENDI" ]; then
+    echo -ne "\e[1;32mDigite \"ENTENDI\" para continuar: \e[0m"
+    read resposta
+    resposta=$(echo "$resposta" | tr -d '[:space:]')
+    upper_resposta=$(echo "$resposta" | tr '[:lower:]' '[:upper:]')
+    if [ "$upper_resposta" = "ENTENDI" ]; then
       break
     else
       echo -e "\e[1;31mVocê precisa digitar exatamente \e[1;33mENTENDI\e[1;31m para prosseguir.\e[0m"
     fi
   done
-  clear
 }
 
 
@@ -326,8 +318,8 @@ function warning1 {
 
 # ======================================================================================================================================================== #
 
-warning0
 warning1
+warning0
 root_check0
 welcome0
 useless0
